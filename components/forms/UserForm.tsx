@@ -23,7 +23,7 @@ import { Spinner } from "../ui/spinner"
 
 type UserFormProps = {
     initialValues?: z.infer<typeof userSchema>;
-    id: string
+    id?: string
 }
 
 const UserForm = ({ initialValues, id }: UserFormProps) => {
@@ -40,7 +40,7 @@ const UserForm = ({ initialValues, id }: UserFormProps) => {
     })
 
     async function onSubmit(values: z.infer<typeof userSchema>) {
-        const result = initialValues
+        const result = initialValues && id
             ? await updateUserAction(values, id)
             : await createUsersAction(values)
         if (!result.success) {
