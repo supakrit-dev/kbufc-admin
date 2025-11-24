@@ -12,8 +12,10 @@ export default async function RootLayout({
 }>) {
     
     return (
-        <section>
-            {children}
-        </section>
+        <main>
+            <section>
+                {children}
+            </section>
+        </main>
     );
 }
