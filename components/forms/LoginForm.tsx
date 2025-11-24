@@ -41,7 +41,7 @@ const LoginForm = () => {
                 message: result.message
             })
         }else{
-            router.push('/admin')
+            router.push('/admin/dashboard')
         }
     }
 

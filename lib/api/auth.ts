@@ -4,7 +4,7 @@ export async function login(prevState: { username: string, password: string }): 
     success: boolean,
     message: string
 }> {
-    const {username, password} = prevState
+    const { username, password } = prevState
     return apiClient("/auth/login",
         {
             method: "POST",
@@ -14,4 +14,14 @@ export async function login(prevState: { username: string, password: string }): 
             })
         }
     );
+}
+
+
+export async function logout(): Promise<{
+    success: boolean,
+    message: string
+}> {
+    return apiClient("/auth/logout", {
+        method: "POST"
+    });
 }

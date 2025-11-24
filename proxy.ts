@@ -10,13 +10,14 @@ export function proxy(request: NextRequest) {
     }
 
     if(pathname === '/login' && session){
-        return NextResponse.redirect(new URL('/admin', request.url))
+        return NextResponse.redirect(new URL('/', request.url))
     }
 
     return NextResponse.next();
 }
 
-// Optionally, define a matcher to specify which paths the middleware should run on
 export const config = {
-    matcher: ['/admin/(.*)'],
+    matcher: [
+        '/admin/(.*)',
+    ],
 };
