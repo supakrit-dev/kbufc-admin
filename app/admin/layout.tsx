@@ -37,7 +37,7 @@ export default async function AdminLayout({
                 <AppHeader />
                 {children}
             </main>
-            <Toaster />
+            <Toaster richColors />
         </SidebarProvider>
     );
 }

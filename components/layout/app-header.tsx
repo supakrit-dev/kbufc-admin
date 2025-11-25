@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/navigation-menu"
 import { SidebarTrigger } from "../ui/sidebar"
 
-import { logout } from "@/lib/api/auth"
+import { logout } from "@/actions/auth"
 import { useRouter } from "next/navigation"
 import { toast } from "sonner"
 import { Button } from "../ui/button"
@@ -37,7 +37,7 @@ const AppHeader = () => {
                                     <AvatarFallback>CN</AvatarFallback>
                                 </Avatar>
                             </NavigationMenuTrigger>
-                            <NavigationMenuContent>
+                            <NavigationMenuContent asChild>
                                 <Button variant='ghost' onClick={handleClick}>Logout</Button>
                             </NavigationMenuContent>
                         </NavigationMenuItem>

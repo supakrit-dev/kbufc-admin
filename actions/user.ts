@@ -1,35 +1,25 @@
-import { apiClient } from "./client";
+'use server'
+import { apiClient } from "@/actions/client";
+import { revalidatePath } from "next/cache";
 
-export async function getUser(): Promise<{
-    success: boolean,
-    data?: any
-    message?: string
-}> {
+export async function getUsersAction() {
     return apiClient("/admin/users", {
         method: "GET",
     });
 }
 
-export async function getUserById(id: string): Promise<{
-    success: boolean,
-    data?: any
-    message?: string
-}> {
+export async function getUserByIdAction(id: string) {
     return apiClient(`/admin/users/${id}`, {
         method: "GET"
     });
 }
 
-export async function createUser(prevState: {
+export async function createUserAction(prevState: {
     username: string
     password: string
     role: string
     status: string
-}): Promise<{
-    success: boolean,
-    message: any
-
-}> {
+}) {
     const { username, password, role, status } = prevState
     return apiClient("/admin/users", {
         method: "POST",
@@ -42,29 +32,20 @@ export async function createUser(prevState: {
     });
 }
 
-export async function deleteUser(id: string): Promise<{
-    success: boolean,
-    message: any
-
-}> {
+export async function deleteUserAction({ id, pathName }: { id: string, pathName: string }) {
+    revalidatePath(pathName)
     return apiClient(`/admin/users/${id}`, {
         method: "DELETE"
     });
 }
 
-export async function updateUser(prevState: {
+export async function updateUserAction(prevState: {
     username: string
     password: string
     role: string
     status: string
-}, id: string): Promise<{
-    success: boolean,
-    message: any
-
-}> {
+}, id: string) {
     const { username, password, role, status } = prevState
-    
-    
     return apiClient(`/admin/users/${id}`, {
         method: "PATCH",
         body: JSON.stringify({

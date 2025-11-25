@@ -1,5 +1,5 @@
 'use client'
-import { createUsersAction, updateUserAction } from "@/actions/users"
+import { createUserAction, updateUserAction } from "@/actions/user"
 import {
     Form,
     FormControl,
@@ -43,7 +43,7 @@ const UserForm = ({ initialValues, id }: UserFormProps) => {
     async function onSubmit(values: z.infer<typeof userSchema>) {
         const result = initialValues && id
             ? await updateUserAction(values, id)
-            : await createUsersAction(values)
+            : await createUserAction(values)
         if (!result.success) {
             form.setError("root", {
                 message: result.message
@@ -153,7 +153,7 @@ const UserForm = ({ initialValues, id }: UserFormProps) => {
 
                 </div>
                 <div className="flex gap-4 justify-end">
-                    <Button variant='outline' className="text-md px-8 py-[18px]" onClick={() => router.back()}>
+                    <Button variant='outline' type='button' className="text-md px-8 py-[18px]" onClick={() => router.replace('/admin/users')}>
                         Cancel
                     </Button>
                     <Button type="submit" className="text-md px-8 py-[18px]" disabled={form.formState.isSubmitting}>
