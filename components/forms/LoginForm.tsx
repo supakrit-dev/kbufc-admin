@@ -40,6 +40,7 @@ const LoginForm = () => {
             form.setError("root", {
                 message: result.message
             })
+            form.resetField("password")
         }else{
             router.push('/admin/dashboard')
         }
