@@ -1,6 +1,6 @@
 "use client"
 
-import { deleteUsersAction } from "@/actions/users"
+import { deleteUserAction } from "@/actions/user"
 import { ConfirmActionDialog } from "@/components/dialog/ConfirmActionDialog"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -61,7 +61,6 @@ export const columns: ColumnDef<User>[] = [
         cell: ({ row }) => {
             const id = row.original.id
             const pathName = usePathname()
-
             return (
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
@@ -82,7 +81,7 @@ export const columns: ColumnDef<User>[] = [
                             <ConfirmActionDialog
                                 title="Delete User"
                                 description="Are you sure you want to delete this user? This action cannot be undone."
-                                onConfirm={() => deleteUsersAction({ id, pathName })}
+                                onConfirm={() => deleteUserAction({ id, pathName })}
                                 triggerElement={
                                     <Button variant='ghost' className="w-full text-muted-foreground justify-start">
                                         <CircleX />Delete

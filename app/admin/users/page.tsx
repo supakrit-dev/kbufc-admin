@@ -1,4 +1,4 @@
-import { getUsersAction } from "@/actions/users";
+import { getUsersAction } from "@/actions/user";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import Link from "next/link";
@@ -6,7 +6,8 @@ import { columns, User } from "./columns";
 import { DataTable } from "./data-table";
 
 const UserPage = async () => {
-  const data: User[] = await getUsersAction();
+  const result = await getUsersAction();
+  const data: User[] = result.data
 
   return (
     <section>
@@ -19,9 +20,9 @@ const UserPage = async () => {
         </Button>
       </div>
 
-        <div className="p-4">
-          <DataTable columns={columns} data={data} />
-        </div>
+      <div className="p-4">
+        <DataTable columns={columns} data={data} />
+      </div>
     </section>
   )
 }

@@ -1,6 +1,5 @@
-import { getUsersByIdAction } from "@/actions/users"
+import { getUserByIdAction } from "@/actions/user"
 import UserForm from "@/components/forms/UserForm"
-import { User } from "../columns"
 
 type UserEditPageProps = {
   params: {
@@ -10,7 +9,8 @@ type UserEditPageProps = {
 
 const UserEditPage = async ({ params }: UserEditPageProps) => {
   const { id } = await params
-  const user: User = await getUsersByIdAction(id)
+  const result = await getUserByIdAction(id)
+  const user = result.data
 
   return (
     <section>

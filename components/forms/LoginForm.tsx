@@ -9,7 +9,7 @@ import {
     FormMessage
 } from "@/components/ui/form"
 
-import { login } from "@/lib/api/auth"
+import { login } from "@/actions/auth"
 import { loginSchema } from "@/schemas/auth/login.schema"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { AlertCircleIcon } from "lucide-react"
