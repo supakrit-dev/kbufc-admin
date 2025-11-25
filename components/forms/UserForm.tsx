@@ -28,6 +28,7 @@ type UserFormProps = {
 
 const UserForm = ({ initialValues, id }: UserFormProps) => {
     const router = useRouter()
+    const isDisabledPassword = initialValues ? true : false
 
     const form = useForm<z.infer<typeof userSchema>>({
         resolver: zodResolver(userSchema),
@@ -78,20 +79,22 @@ const UserForm = ({ initialValues, id }: UserFormProps) => {
                     <FormField
                         control={form.control}
                         name="password"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>
-                                    {initialValues
-                                        ? 'New Password'
-                                        : 'Password'
-                                    }
-                                </FormLabel>
-                                <FormControl>
-                                    <Input type="password" {...field} disabled />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
+                        render={({ field }) => {
+                            return (
+                                <FormItem>
+                                    <FormLabel>
+                                        {initialValues
+                                            ? 'New Password'
+                                            : 'Password'
+                                        }
+                                    </FormLabel>
+                                    <FormControl>
+                                        <Input type="password" {...field} disabled={isDisabledPassword} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )
+                        }}
                     />
                 </div>
                 <div className="grid sm:grid-cols-2 gap-4 sm:gap-2">
